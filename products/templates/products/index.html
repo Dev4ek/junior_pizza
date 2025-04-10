@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="beho">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Pizza - Лучшие пиццы в Москве</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-[#121212] m-0 p-0">
+    <div class="fixed items-center h-full w-full justify-center hidden" id='authPopup'>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99 h-110 w-100 rounded-xl bg-[#121212]">
+
+            <div class="mx-auto h-full w-full flex flex-col items-center px-6 ">
+                <div class="w-full text-end">
+                    <button class="text-white h-10 w-10 bg-orange-600 rounded-4xl mt-3 cursor-pointer" id="closeAuth">⨯</button>
+                </div>
+                <p class="text-white text-4xl font-extrabold my-5">Авторизация</p>
+                <p class="text-center text-white text-sm font-extralight">Подарим подарок на день рождения, сохраним адрес доставки и расскажем об акциях</p>
+                <p class="text-white mt-8 mb-1">Номер телефона</p>
+                <input type="tel" id="phone" class="rounded-4xl shadow appearance-none border rounded w-full py-2 px-3 border-orange-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="+7 (999) 888-77-66" maxlength="12">
+                <button class="flex px-4 py-2 mt-3 rounded-4xl bg-orange-600 text-white cursor-pointer w-full justify-center">Войти</button>
+                <p class="text-white mt-7 text-xs opacity-40 text-center">Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="h-screen" id="main">
+        <img class="absolute z-[-1] h-full w-full opacity-35" src="assets/pizza_bg.png" alt="Пицца"> 
+        
+        <header class="flex py-5 mx-5 justify-between z-10">
+            <div class="flex px-4 py-2 rounded-4xl bg-orange-600">
+                <h1 class="flex items-center font-bold text-xl text-white">Junior Pizza</h1>
+
+                <svg class="size-10" fill="#ffffff" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 224.512 224.512" xml:space="preserve">
+                <g>
+                    <circle cx="89" cy="74.426" r="14.146"/>
+                    <path d="M112.256,126.77c-7.811,0-14.145,6.334-14.145,14.147c0,7.816,6.334,14.15,14.145,14.15c7.814,0,14.148-6.334,14.148-14.15
+                        C126.404,133.104,120.07,126.77,112.256,126.77z"/>
+                    <circle cx="133.563" cy="93.729" r="14.146"/>
+                    <path d="M195.287,16.574C168.741,5.576,140.776,0,112.169,0c-28.493,0-56.4,5.574-82.945,16.566
+                        c-1.838,0.762-3.298,2.223-4.06,4.061c-0.761,1.838-0.761,3.904,0.001,5.742l11.992,28.932c0.001,0.004,0.005,0.008,0.007,0.012
+                        l68.16,164.574c1.168,2.818,3.917,4.625,6.926,4.625c0.218,0,0.437-0.01,0.656-0.029c2.85-0.248,5.271-2.088,6.311-4.682
+                        l68.143-164.49c0.002-0.004,0.004-0.006,0.006-0.01l11.98-28.928C200.93,22.545,199.113,18.158,195.287,16.574z M112.169,15
+                        c24.133,0,47.778,4.264,70.397,12.688l-6.246,15.08c-20.618-7.598-42.157-11.445-64.138-11.445
+                        c-21.896,0-43.382,3.848-63.982,11.443L41.946,27.68C64.554,19.262,88.141,15,112.169,15z M112.254,197.416L53.949,56.643
+                        c18.766-6.846,38.317-10.32,58.232-10.32c20,0,39.605,3.477,58.389,10.324L112.254,197.416z"/>
+                </g>
+                </svg>
+            </div>
+
+
+            <nav class="items-center flex">
+                <a href="#main" class="font-medium text-xl opacity-75 px-5 text-white hover:opacity-100 transition duration-300">
+                    Главная
+                </a>
+                <a href="#menu" class="font-medium text-xl opacity-75 px-5 text-white hover:opacity-100 transition duration-300">
+                    Меню
+                </a>
+                <a href="#footer" class="font-medium text-xl opacity-75 px-5 text-white hover:opacity-100 transition duration-300">
+                    Информация
+                </a>
+            </nav>
+
+            <div id='openAuth' class="px-5 cursor-pointer bg-orange-600 rounded-4xl flex items-center hover:bg-orange-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button  class="font-medium text-xl text-white cursor-pointer">
+                    Личный кабинет
+                </button>
+                <svg class="size-10" fill="#ffffff" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        viewBox="0 0 297 297" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M255.75,0h-148.5c-5.522,0-10,4.478-10,10v112h-39.5c-14.612,0-26.5,11.888-26.5,26.5S43.138,175,57.75,175h39.5v112
+                                c0,5.522,4.478,10,10,10h148.5c5.522,0,10-4.478,10-10V10C265.75,4.478,261.272,0,255.75,0z M57.75,155
+                                c-3.584,0-6.5-2.916-6.5-6.5s2.916-6.5,6.5-6.5h104.5c3.687,0,7.076-2.03,8.816-5.281c1.74-3.252,1.55-7.197-0.496-10.266
+                                L158.936,109h19.963l26.333,39.5L178.898,188h-19.963l11.635-17.453c2.046-3.068,2.236-7.014,0.496-10.266
+                                c-1.74-3.251-5.129-5.281-8.816-5.281H57.75z M245.75,277h-128.5V175h26.314l-11.635,17.453
+                                c-2.046,3.068-2.236,7.014-0.496,10.266c1.74,3.251,5.129,5.281,8.816,5.281h44c3.344,0,6.466-1.671,8.32-4.453l33-49.5
+                                c2.239-3.358,2.239-7.735,0-11.094l-33-49.5c-1.854-2.782-4.977-4.453-8.32-4.453h-44c-3.688,0-7.076,2.03-8.816,5.281
+                                c-1.74,3.252-1.55,7.197,0.496,10.266L143.564,122H117.25V20h128.5V277z"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+                
+        </header>
+        <main class="my-35 mx-35 w-120">
+            <p class="text-white text-8xl font-extrabold mb-5">Пицца от которой невозожно отказаться!</p>
+            <a href="#menu" class=" font-medium text-4xl py-2 px-5 bg-orange-600 rounded-4xl text-white no-underline hover:bg-orange-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                Попробовать пиццу!
+            </a>
+            
+        </main>
+    </section>
+
+
+    <section class="mx-40 my-15" id="menu">
+        <p class="text-white text-4xl font-bold">Пиццы</p>
+        <div class="mt-10 gap-10 grid-cols-4 grid">
+
+            <div class="max-w-80 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <img src="assets/pizza1.png" alt="pizza1" class="h-80 w-80">
+                <p class="text-white text-xl font-medium py-1">Креветки и Песто</p>
+                <p class="text-white opacity-75 text-sm font-light py-1">Креветки, томаты, шампиньоны, соус песто, моцарелла, итальянские травы, фирменный томатный соус</p>
+                <div class="flex justify-between">
+                    <p class="text-white text-xl font-medium text-center flex items-center">от 500 ₽</p>
+                    <button class="cursor-pointer font-medium text-xl py-0.5 px-1 bg-orange-600 rounded-4xl text-white">
+                        В корзину 
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+
+    <footer class="bg-gray-800" id="footer">
+        <div class="px-70 py-5">
+            <div class=" flex justify-between">
+                <div class="flex flex-col">
+                    <p class="text-xl font-bold border-solid border-b-2 text-orange-600">Junior pizza</p>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300" >О нас</a>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Документы</a>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-xl font-bold border-solid border-b-2 text-orange-600">Соц сети</p>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Вконтакте</a>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Telegram</a>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Ватсап</a>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-xl font-bold border-solid border-b-2 text-orange-600">Работать с нами</p>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Вакансии</a>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Сколько платят</a>
+                    <a href="#" class="text-white opacity-80 pt-1 font-medium hover:opacity-100 transition duration-300">Где мы</a>
+                </div>
+            </div>
+
+            <div class="border-b-3 h-1 border-gray-600 opacity-50 border-solid pt-5" >
+            </div>
+
+            <div class="mt-5">
+                <h1 class="text-white text-xl font-medium opacity-50">junior pizza © 2025</h1>
+                <p class="text-gray-500 opacity-50 text-sm py-1">ОГРН 1131101001844, ИНН 1101140415</p>
+                <p class="text-gray-500 opacity-50 text-sm">167001, Республика Коми, г. Сыктывкар, Октябрьский проспект, д. 16"</p>
+            </div>
+
+
+        </div>
+
+        
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
